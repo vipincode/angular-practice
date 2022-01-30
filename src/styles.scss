@@ -2,6 +2,10 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
+
+// Merege Map
+@use 'sass:map';
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,8 +16,12 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$exercise-primary: mat.define-palette(mat.$indigo-palette);
+$exercise-primary: mat.define-palette(mat.$cyan-palette, 100);
 $exercise-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// EXTRA COLOR
+$exercise-success: mat.define-palette(mat.$green-palette);
+$exercise-info: mat.define-palette(mat.$purple-palette);
 
 // The warn palette is optional (defaults to red).
 $exercise-warn: mat.define-palette(mat.$red-palette);
@@ -27,6 +35,19 @@ $exercise-theme: mat.define-light-theme((
     warn: $exercise-warn,
   )
 ));
+
+// MEREGE THEME
+$exercise-theme: map.deep-merge(
+  $exercise-theme,
+  (
+    succes: $exercise-success,
+    info: $exercise-info,
+    color: (
+      succes: $exercise-success,
+      info: $exercise-info
+    ),
+  )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
