@@ -1,0 +1,9 @@
+:host {
+    padding: 15px; // apply only on `app-banner`
+    display: block;
+}
+
+::ng-deep main {
+    width: 90%;
+    margin: 0 auto;
+}

@@ -1,0 +1,44 @@
+@use '~@angular/material' as mat;
+@use 'sass:map';
+
+@mixin app-banner-typography($typography-config) {
+  app-banner {
+     .heading {
+       @include mat.typography-level($typography-config, title);
+     }
+  }
+}
+
+@mixin app-banner-theme($theme) {
+    $theme-colors         : mat.get-color-config($theme);
+    $typography           : mat.get-typography-config($theme);
+
+    $primary-palette      : map.get($theme-colors, 'primary');
+    $accent-palette       : map.get($theme-colors, 'accent');
+    $warn-palette         : map.get($theme-colors, 'warn');
+    $success-palette      : map.get($theme-colors, 'success');
+    $info-palette         : map.get($theme-colors, 'info');
+
+    $backgrounds          : map.get($theme-colors, background);
+
+    @include app-banner-typography($typography);
+
+    app-banner {
+        background-color: mat.get-color-from-palette($backgrounds, card);
+        &.app-banner-success {
+            background-color: mat.get-color-from-palette($success-palette, lighter);
+        }
+        &.app-banner-info {
+            background-color: mat.get-color-from-palette($info-palette, lighter);
+        }
+        &.app-banner-warn {
+            background-color: mat.get-color-from-palette($warn-palette, lighter);
+        }
+        &.app-banner-primary {
+            background-color: mat.get-color-from-palette($primary-palette, lighter);
+        }
+        &.app-banner-accent {
+            background-color: mat.get-color-from-palette($accent-palette, 100);
+        }
+    }
+}
