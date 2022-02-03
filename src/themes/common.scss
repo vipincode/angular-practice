@@ -1,0 +1,30 @@
+@use '~@angular/material' as mat;
+@use 'sass:map';
+
+// EXTRA COLOR
+$exercise-success: mat.define-palette(mat.$green-palette);
+$exercise-info: mat.define-palette(mat.$purple-palette);
+$exercise-warn: mat.define-palette(mat.$red-palette);
+
+// typography
+$exercise-typography: mat.define-typography-config(
+  $font-family : "'Open Sans', sans-serif",
+  $display-4   : mat.define-typography-level(95px, 95px, 300, $letter-spacing: -0.05em),
+  $display-3   : mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2   : mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1   : mat.define-typography-level(34px, 40px, 400),
+  $headline    : mat.define-typography-level(24px, 32px, 400),
+);
+
+@function apply-extra-color($theme) {
+  @return map.deep-merge(
+    $theme,
+    (
+      color: (
+        success: $exercise-success,
+        info: $exercise-info,
+        warn: $exercise-warn
+      ),
+    )
+  );
+}

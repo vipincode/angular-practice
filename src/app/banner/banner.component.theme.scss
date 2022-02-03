@@ -6,6 +6,9 @@
      .heading {
        @include mat.typography-level($typography-config, title);
      }
+     .message {
+       @include mat.typography-level($typography-config, body-1);
+     }
   }
 }
 
@@ -21,7 +24,9 @@
 
     $backgrounds          : map.get($theme-colors, background);
 
-    @include app-banner-typography($typography);
+    @if $typography != null {
+      @include app-banner-typography($typography);
+    }
 
     app-banner {
         background-color: mat.get-color-from-palette($backgrounds, card);

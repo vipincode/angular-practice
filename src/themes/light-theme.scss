@@ -1,0 +1,19 @@
+
+@use '~@angular/material' as mat;
+@use "./common";
+
+$exercise-primary: mat.define-palette(mat.$cyan-palette, 500, 200, 700);
+$exercise-accent: mat.define-palette(mat.$pink-palette, A300, A400);
+
+$exercise-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $exercise-primary,
+      accent: $exercise-accent,
+    ),
+    typography: common.$exercise-typography,
+  )
+);
+
+// EXTRA COLOR
+$exercise-theme: common.apply-extra-color($exercise-theme);
