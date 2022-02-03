@@ -1,7 +1,6 @@
 import { MatSelectChange } from '@angular/material/select';
-import { DOCUMENT } from "@angular/common";
 import { OverlayContainer } from "@angular/cdk/overlay";
-import { Component, HostBinding, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +8,27 @@ import { Component, HostBinding, Inject, OnInit, Renderer2 } from '@angular/core
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2
-  ) {}
-  // Constructor methods
+
+  @HostBinding('class')
+  currentTheme: 'light-theme' | 'dark-theme' = 'dark-theme';
+  constructor( private overlayContainer: OverlayContainer ) {}
+
   ngOnInit() {
-    this.renderer.removeClass(this.document.body, 'light-theme');
-    this.renderer.addClass(this.document.body, 'dark-theme');
+    this.overlayContainer.getContainerElement().classList.remove('light-theme');
+    this.overlayContainer.getContainerElement().classList.add('dark-theme');
+    this.currentTheme = 'dark-theme';
   }
-  // Define dark theme on load [Default theme in ths case]
 
   setTheme({source}: MatSelectChange) {
     if(source.value === 'light') {
-      this.renderer.removeClass(this.document.body, 'dark-theme');
-      this.renderer.addClass(this.document.body, 'light-theme');
+      this.currentTheme = 'light-theme';
+      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
+      this.overlayContainer.getContainerElement().classList.add('light-theme');
     } else {
-      this.renderer.removeClass(this.document.body, 'light-theme');
-      this.renderer.addClass(this.document.body, 'dark-theme');
+      this.overlayContainer.getContainerElement().classList.remove('light-theme');
+      this.overlayContainer.getContainerElement().classList.add('dark-theme');
+      this.currentTheme = 'dark-theme';
     }
   }
-  // Themes function
+
 }
