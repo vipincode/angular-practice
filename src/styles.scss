@@ -1,27 +1,8 @@
-
 @use '~@angular/material' as mat;
-@use '../src/app/banner/banner.component.theme' as banner;
-@use '../src/app/app.componen.theme' as root;
-@use 'sass:map';
+@use './themes/common';
+@include mat.core(common.$exercise-typography);
 
-@use '../src/themes/dark-theme' as dark;
-@use '../src/themes/light-theme' as light;
-
-@include mat.core();
-
-@mixin create-theme($exercise-theme) {
-  @include banner.app-banner-theme($exercise-theme);
-  @include root.app-root-theme($exercise-theme);
-  @include mat.all-component-themes($exercise-theme);
-}
 
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.dark-theme {
-  @include create-theme(dark.$exercise-theme);
-}
-.light-theme {
-  @include create-theme(light.$exercise-theme);
-}

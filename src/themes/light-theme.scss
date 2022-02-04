@@ -1,4 +1,3 @@
-
 @use '~@angular/material' as mat;
 @use "./common";
 
@@ -17,3 +16,6 @@ $exercise-theme: mat.define-light-theme(
 
 // EXTRA COLOR
 $exercise-theme: common.apply-extra-color($exercise-theme);
+
+// Generate Light theme
+@include common.create-theme($exercise-theme);

@@ -9,24 +9,20 @@ import { Component, HostBinding, Inject, OnInit, Renderer2 } from '@angular/core
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  readonly themeAnchor = this.document.getElementById('app-theme');
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {}
   // Constructor methods
-  ngOnInit() {
-    this.renderer.removeClass(this.document.body, 'light-theme');
-    this.renderer.addClass(this.document.body, 'dark-theme');
-  }
+  ngOnInit() {}
   // Define dark theme on load [Default theme in ths case]
 
   setTheme({source}: MatSelectChange) {
     if(source.value === 'light') {
-      this.renderer.removeClass(this.document.body, 'dark-theme');
-      this.renderer.addClass(this.document.body, 'light-theme');
+      this.renderer.setAttribute(this.themeAnchor, 'href', '/light-theme.css');
     } else {
-      this.renderer.removeClass(this.document.body, 'light-theme');
-      this.renderer.addClass(this.document.body, 'dark-theme');
+      this.renderer.setAttribute(this.themeAnchor, 'href', '/dark-theme.css');
     }
   }
   // Themes function

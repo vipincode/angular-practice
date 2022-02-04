@@ -1,4 +1,6 @@
 @use '~@angular/material' as mat;
+@use '../app/banner/banner.component.theme' as banner;
+@use '../app/app.componen.theme' as root;
 @use 'sass:map';
 
 // EXTRA COLOR
@@ -27,4 +29,10 @@ $exercise-typography: mat.define-typography-config(
       ),
     )
   );
+}
+
+@mixin create-theme($exercise-theme) {
+  @include banner.app-banner-theme($exercise-theme);
+  @include root.app-root-theme($exercise-theme);
+  @include mat.all-component-themes($exercise-theme);
 }
