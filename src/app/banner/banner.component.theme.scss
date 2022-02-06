@@ -29,6 +29,7 @@
     }
 
     app-banner {
+        @include mat.elevation(2, mat.get-color-from-palette($primary-palette), 0.5);
         background-color: mat.get-color-from-palette($backgrounds, card);
         &.app-banner-success {
             background-color: mat.get-color-from-palette($success-palette, lighter);
